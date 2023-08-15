@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Main {
@@ -24,6 +25,9 @@ public class Main {
         System.out.println("*******************************************************************");
         List<City> sortedCitiesByDistrictAndByName = cityService.sortByDistrictAndNameInAlphabeticalOrderInDescendingOrder(cities);
         sortedCitiesByDistrictAndByName.forEach(System.out::println);
+        System.out.println("*******************************************************************");
+        System.out.println("Largest population");
+        cityService.findIndexAndValueWithLargestPopulation(cities);
 
     }
 }

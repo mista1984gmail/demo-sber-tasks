@@ -11,15 +11,35 @@ import java.util.stream.Collectors;
 
 public class CityService {
 
-    public List<City>sortByNameInAlphabeticalOrderInDescendingOrder(List<City>cities){
+    public List<City> sortByNameInAlphabeticalOrderInDescendingOrder(List<City>cities){
         cities.sort(new CityNameComparator());
         return cities;
     }
 
-    public List<City>sortByDistrictAndNameInAlphabeticalOrderInDescendingOrder(List<City>cities){
+    public List<City> sortByDistrictAndNameInAlphabeticalOrderInDescendingOrder(List<City>cities){
         Comparator<City> comparator = new CityDistrictComparator().thenComparing(new CityNameComparatorWithOrder());
         cities.sort(comparator);
         return cities;
+    }
+
+    public void findIndexAndValueWithLargestPopulation(List<City> cities) {
+        if (cities.size() > 0) {
+            City[] citiesArrays = new City[cities.size()];
+            for (int i = 0; i < cities.size(); i++) {
+                citiesArrays[i] = cities.get(i);
+            }
+            long maxPopulation = citiesArrays[0].getPopulation();
+            int index = 0;
+            for (int i = 1; i < citiesArrays.length; i++) {
+                if (maxPopulation < citiesArrays[i].getPopulation()) {
+                    maxPopulation = citiesArrays[i].getPopulation();
+                    index = i;
+                }
+            }
+            System.out.println("[" + index + "] = " + maxPopulation);
+        } else {
+            System.out.println("[0] = 0");
+        }
     }
 
 
