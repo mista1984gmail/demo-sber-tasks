@@ -1,5 +1,9 @@
 package com.sber.tasks.demosbertasks;
 
+import com.sber.tasks.demosbertasks.model.City;
+import com.sber.tasks.demosbertasks.service.CityService;
+import com.sber.tasks.demosbertasks.service.FileLoader;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -8,33 +12,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    public static final String delimiter = ",";
     public static String filePath = "C:\\Users\\Desktop\\Cities.csv";
-    public static List<City> cities = new ArrayList<>();
-
-    public static void read(String csvFile) {
-        try {
-            File file = new File(csvFile);
-            FileReader fr = new FileReader(file);
-            BufferedReader br = new BufferedReader(fr);
-            String line = "";
-            String[] tempArr;
-            while((line = br.readLine()) != null) {
-                tempArr = line.split(delimiter);
-                for (String tempStr : tempArr) {
-                    String[] cityInfo = tempStr.split(";");
-                    City city = new City.CityBuilder().createCity(cityInfo);
-                    cities.add(city);
-                }
-            }
-            br.close();
-        } catch(IOException ioe) {
-            ioe.printStackTrace();
-        }
-    }
     public static void main(String[] args) {
         String csvFile = filePath;
-        Main.read(csvFile);
+        List<City> cities = FileLoader.read(csvFile);
         cities.forEach(System.out::println);
+        System.out.println("*******************************************************************");
+        CityService cityService = new CityService();
+        List<City> sortedCitiesByName = cityService.sortByNameInAlphabeticalOrderInDescendingOrder(cities);
+        sortedCitiesByName.forEach(System.out::println);
+        System.out.println("*******************************************************************");
+        List<City> sortedCitiesByDistrictAndByName = cityService.sortByDistrictAndNameInAlphabeticalOrderInDescendingOrder(cities);
+        sortedCitiesByDistrictAndByName.forEach(System.out::println);
+
     }
 }

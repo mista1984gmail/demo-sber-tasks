@@ -1,4 +1,4 @@
-package com.sber.tasks.demosbertasks;
+package com.sber.tasks.demosbertasks.model;
 
 public class City {
     private String name;
