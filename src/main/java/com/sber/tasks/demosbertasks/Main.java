@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Main {
     public static final String delimiter = ",";
-    public static String filePath = "C:\\Users\\Desktop\\Tasks.csv";
+    public static String filePath = "C:\\Users\\Desktop\\Cities.csv";
     public static List<City> cities = new ArrayList<>();
 
     public static void read(String csvFile) {
