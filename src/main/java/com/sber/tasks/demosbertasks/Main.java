@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Main {
-    public static String filePath = "C:\\Users\\s.mitskevich\\Desktop\\Задача ВС Java Сбер.csv";
+    public static String filePath = "C:\\Users\\Desktop\\Cities.csv";
     public static void main(String[] args) {
         String csvFile = filePath;
         List<City> cities = FileLoader.read(csvFile);
